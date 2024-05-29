@@ -1,0 +1,113 @@
+openapi: 3.0.0
+info:
+  title: Jump URL Shortening Service API
+  description: API for the Jump URL shortening service.
+  version: 1.0.0
+servers:
+  - url: http://localhost:3000
+    description: Local development server
+paths:
+  /shorten:
+    post:
+      summary: Shorten a long URL
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                longUrl:
+                  type: string
+                  example: "https://example.com/very/long/url"
+      responses:
+        '200':
+          description: Successfully shortened URL
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  shortUrl:
+                    type: string
+                    example: "http://ju.mp/a1b2c3"
+        '400':
+          description: Invalid input
+  /custom-shorten:
+    post:
+      summary: Create a custom short URL
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                longUrl:
+                  type: string
+                  example: "https://example.com/very/long/url"
+                customAlias:
+                  type: string
+                  example: "my-custom-alias"
+      responses:
+        '200':
+          description: Successfully created custom short URL
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  shortUrl:
+                    type: string
+                    example: "http://ju.mp/my-custom-alias"
+        '400':
+          description: Invalid input or alias already in use
+  /urls:
+    get:
+      summary: Get analytics for shortened URLs
+      responses:
+        '200':
+          description: Successfully retrieved analytics
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    shortUrl:
+                      type: string
+                      example: "http://ju.mp/a1b2c3"
+                    longUrl:
+                      type: string
+                      example: "https://example.com/very/long/url"
+                    clicks:
+                      type: integer
+                      example: 123
+        '401':
+          description: Unauthorized
+  /auth/github:
+    get:
+      summary: GitHub OAuth login
+      responses:
+        '302':
+          description: Redirect to GitHub for authentication
+  /auth/github/callback:
+    get:
+      summary: GitHub OAuth callback
+      responses:
+        '200':
+          description: Successfully authenticated
+        '400':
+          description: Authentication failed
+components:
+  securitySchemes:
+    githubAuth:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: https://github.com/login/oauth/authorize
+          tokenUrl: https://github.com/login/oauth/access_token
+          scopes: {}
+security:
+  - githubAuth: []

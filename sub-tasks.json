@@ -1,0 +1,163 @@
+0:
+[
+  "Install Node.js and npm",
+  "Install NestJS CLI",
+  "Create a new NestJS project",
+  "Set up PostgreSQL database",
+  "Install Docker",
+  "Create Dockerfile for NestJS application",
+  "Create docker-compose.yml for PostgreSQL",
+  "Run Docker containers",
+  "Configure NestJS to connect to PostgreSQL",
+  "Verify the development environment setup"
+]
+1:
+[
+  "Create a new GitHub repository",
+  "Clone the repository to your local machine",
+  "Create a .github/workflows directory in the repository",
+  "Add a YAML file for GitHub Actions configuration",
+  "Define the CI/CD workflow in the YAML file",
+  "Commit and push the changes to the repository",
+  "Verify that the GitHub Actions workflow runs successfully",
+  "Set up any necessary environment variables or secrets in the repository settings",
+  "Test the CI/CD pipeline with a sample code change",
+  "Monitor the workflow runs and fix any issues"
+]
+2:
+[
+  "Define the API schema for URL shortening",
+  "Define the API schema for user authentication",
+  "Define the API schema for analytics",
+  "Define the API schema for custom short URLs",
+  "Integrate all API schemas into a single OpenAPI specification document",
+  "Validate the OpenAPI specification for errors",
+  "Document the API endpoints and their usage",
+  "Create example requests and responses for each endpoint",
+  "Review and finalize the OpenAPI specification"
+]
+3:
+[
+  "Review the OpenAPI specifications",
+  "Identify core API functionalities",
+  "Create test cases for each core functionality",
+  "Write unit tests for individual API endpoints",
+  "Write integration tests for combined API functionalities",
+  "Run the tests and document the results",
+  "Fix any issues found during testing",
+  "Review and refactor tests for optimization"
+]
+4:
+[
+  "Design the database schema",
+  "Set up the development environment",
+  "Implement URL shortening logic",
+  "Create API endpoints for URL creation and retrieval",
+  "Write unit tests for the API",
+  "Document the API endpoints",
+  "Deploy the API to a server",
+  "Monitor and log API usage"
+]
+5:
+[
+  "Set up a GitHub OAuth application",
+  "Install necessary OAuth libraries",
+  "Create a login route",
+  "Handle GitHub OAuth callback",
+  "Store user information in the database",
+  "Create a logout route",
+  "Test the authentication flow"
+]
+6:
+[
+  "Design the database schema for analytics data",
+  "Implement the endpoint for tracking URL clicks",
+  "Create the endpoint for generating custom short URLs",
+  "Write unit tests for the analytics endpoints",
+  "Write unit tests for the custom short URL endpoints",
+  "Update API documentation to include new endpoints",
+  "Deploy the new endpoints to the staging environment",
+  "Perform integration testing on the staging environment",
+  "Deploy the new endpoints to the production environment",
+  "Monitor the performance and usage of the new endpoints"
+]
+7:
+[
+  "Create a new GitHub repository",
+  "Navigate to the repository settings",
+  "Enable GitHub Actions in the repository",
+  "Create a new workflow file in the .github/workflows directory",
+  "Define the workflow triggers (e.g., push, pull request)",
+  "Set up jobs for different stages (e.g., build, test, deploy)",
+  "Configure the build job to install dependencies and compile the code",
+  "Configure the test job to run unit and integration tests",
+  "Set up secrets for deployment (e.g., API keys, credentials)",
+  "Configure the deploy job to deploy the application to the desired environment",
+  "Commit and push the workflow file to the repository",
+  "Monitor the GitHub Actions tab for workflow execution and results"
+]
+8:
+[
+  "Write a Dockerfile for the application",
+  "Install necessary dependencies in the Dockerfile",
+  "Copy application code into the Docker image",
+  "Expose required ports in the Dockerfile",
+  "Build the Docker image using the Dockerfile",
+  "Tag the Docker image with a version",
+  "Push the Docker image to a container registry",
+  "Verify the Docker image by running a container"
+]
+9:
+[
+  "Build the Docker image for the API",
+  "Push the Docker image to the container registry",
+  "Create a Kubernetes deployment configuration file",
+  "Apply the deployment configuration to the Kubernetes cluster",
+  "Expose the deployment using a Kubernetes service",
+  "Verify the API is running in the Kubernetes cluster",
+  "Update DNS settings to point to the new API endpoint"
+]
+10:
+[
+  "Install Prometheus",
+  "Configure Prometheus data sources",
+  "Install Grafana",
+  "Configure Grafana data sources",
+  "Create dashboards in Grafana",
+  "Set up alerts in Grafana",
+  "Test the integration",
+  "Document the setup process"
+]
+11:
+[
+  "Review API documentation",
+  "Set up testing environment",
+  "Write test cases for each endpoint",
+  "Execute test cases",
+  "Log and analyze test results",
+  "Report any bugs or issues found",
+  "Retest after bug fixes",
+  "Document testing process and results"
+]
+12:
+[
+  "Analyze current API performance metrics",
+  "Identify bottlenecks and areas for improvement",
+  "Implement caching mechanisms",
+  "Optimize database queries",
+  "Refactor inefficient code",
+  "Load test the optimized API",
+  "Monitor performance post-optimization",
+  "Scale infrastructure as needed"
+]
+13:
+[
+  "Design the layout for the URL input section",
+  "Create input fields for URL entry",
+  "Implement validation for URL format",
+  "Add buttons for adding and removing URLs",
+  "Develop a list view to display entered URLs",
+  "Integrate functionality to edit existing URLs",
+  "Ensure responsiveness of the GUI",
+  "Test the GUI for usability and bugs"
+]
