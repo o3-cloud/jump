@@ -1,2 +1,4 @@
-.ai
-.vscode
+.vcode
+.project
+code.txt
+node_modules

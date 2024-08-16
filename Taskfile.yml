@@ -1,64 +1,30 @@
 version: 3
-env:
-  AI_CLI_DIR: "{{.ROOT_DIR}}/.ai"
-vars:
-  project_props: |
-    root_dir="{{.ROOT_DIR}}"
-    project_name="{{.p}}"
+
+includes:
+  lib: /Users/owenzanzal/Projects/cllm/.cllm/tasks/Taskfile_chat.yml
 tasks:
-  project:
-    vars:
-      init_prompt: |
-        You are a Project Manager. Your job is to help define the scope of this project.
-        Gather the requirements and constraints from the stakeholders and create a project plan.
-        Ask one question at a time question until you have gathered all the necessary information.
-      c: plan
+  setup:
     cmds:
-      - ai -p "{{.project_props}}" -c {{.c}} gpt/4o "{{.init_prompt}}"
-      - task: chat
+      - task: lib:chat
         vars:
-          c: "{{.c}}"
-      - task: gen:plan
-  gen:
-    desc: "Generate project artifacts"
+          CHAT_CONTEXT: "project"
+          CHAT_ROLE: "You are a software project manager"
+          CHAT_INSTRUCTION: |
+            Collect the requirements from the client and create a project plan. As the client
+            one question at a time and make sure you understand the requirements before moving on.
+          STOP_WORD: "DONE"
+          SESSION_DIR: ".project"
+  setup-docs:
+    - cllm -cp .project -c project --disable-chat-context-write -po "Markdown formatted text" -pi "Create a README.md file" gpt/4 > README.md
+    - |
+      cllm -cp .project -c project --disable-chat-context-write \
+      -pr "You are a software project manager" \
+      -po "Markdown formatted text" \
+      -pi "This project into individual tasks. Order in the order they should be delivered." gpt/4 > TASKS.md
+  code:
     cmds:
-      - ai -c plan gpt/4o "{{.q}}"
-  gen:plan:
-    desc: "Generate a project plan"
+      - code2prompt --filter "*.md,*.yml" --path ./ --output .project/code.txt --exclude "**/node_modules/**,*-lock.json,*.png,.cllm,.project" --line-number
+  do:
     cmds:
-      - ai -c plan gpt/4o "Generate a project plan" > "{{.ROOT_DIR}}/PLAN.md"
-  gen:readme:
-    desc: "Generate a project readme"
-    cmds:
-      - ai -c plan gpt/4o "Generate a project README.md" > "{{.ROOT_DIR}}/README.md"
-  gen:tasks:
-    desc: "Generate a project tasks"
-    cmds:
-      - ai -s list -c plan gpt/4o "Generate a project tasks" > "{{.ROOT_DIR}}/tasks.json"
-  chat:
-    desc: "Chat with the AI"
-    cmds:
-      - |
-        while true; do
-          read -p "You: " input
-          if [ "$input" == "exit" ]; then
-            break
-          fi
-          echo "Bot: $(ai -c {{.c}} gpt/4o "${input}")"
-        done
-  code:bash:
-    desc: "Create bash code from prompt"
-    cmds:
-      - | 
-        cmd=$(ai -p "{{.project_props}}" -s bash gpt/4o "{{.q}}" | jq -r '.code')
-        echo "Created: '${cmd}'"
-        read -p "Run command? (yes, no): " input
-        if [ "$input" == "yes" ]; then
-          eval "${cmd}" || { 
-            echo "Error: Command execution failed"; 
-            eval "${cmd}" 2>&1 | ai gpt/4o "Explain this error"
-            exit 1; 
-          }
-        fi
-
-
+      - task: code
+      - cllm -pp "$(cat .project/code.txt)" -cp .project -c project --disable-chat-context-write gpt/4 "{{.q}}"

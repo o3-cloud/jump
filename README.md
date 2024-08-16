@@ -1,137 +1,71 @@
-# Jump URL Shortening Service
+# URL Shortening Service (ju.mp)
 
-Jump is a URL shortening service that allows users to shorten long URLs into more manageable and memorable short URLs. This project provides a robust API for URL shortening, user authentication, analytics, and custom short URLs. The GUI development is deferred to a later stage.
+```mermaid
+graph TD;
+    A[User] -->|Interacts with| B[Frontend - HTMX, Tailwind CSS]
+    B -->|Sends requests to| C[Backend - Node.js, TypeScript, Express, JSX]
+    C -->|Queries| D[Database - PostgreSQL]
+    C -->|Sends responses to| B
+    B -->|Displays| E[Analytics - Click Counts]
+```
 
-## Table of Contents
-
-- [Features](#features)
-- [Technology Stack](#technology-stack)
-- [Setup and Installation](#setup-and-installation)
-- [API Documentation](#api-documentation)
-- [Development](#development)
-- [Testing](#testing)
-- [Deployment](#deployment)
-- [Monitoring and Logging](#monitoring-and-logging)
-- [Contributing](#contributing)
-- [License](#license)
+## Overview
+This project is a web application that allows users to shorten long URLs into short, easy-to-remember links. The service is designed to be user-friendly and visually appealing, providing both regular users and admins with the necessary functionalities.
 
 ## Features
+- **User Registration and Login**: Users can create accounts and log in to manage their shortened URLs.
+- **URL Shortening**: Users can input long URLs and receive a shortened version.
+- **Basic Analytics**: Users can view click counts and other basic analytics for their shortened URLs.
+- **Custom Short URLs**: Users have the option to create custom short URLs.
 
-- **URL Shortening**: Shorten long URLs into short, easy-to-remember URLs.
-- **User Authentication**: Integration with GitHub for federated identity authentication.
-- **Analytics**: Track general KPIs such as the number of URLs shortened and user engagement.
-- **Custom Short URLs**: Allow users to create custom short URLs.
+## User Roles
+- **Regular Users**: Can create and manage their own short URLs.
+- **Admins**: Can create short URLs and have visibility into user accounts for oversight.
 
 ## Technology Stack
-
-- **Backend**: TypeScript with NestJS framework
+- **Frontend**: HTMX with JSX, TypeScript, Tailwind CSS
+- **Backend**: Node.js with Express
 - **Database**: PostgreSQL
-- **Frontend**: React (deferred)
-- **CI/CD**: GitHub Actions
-- **Deployment**: Kubernetes cluster
-- **Local Development**: Docker
-- **Monitoring and Logging**: Grafana and Prometheus (to be integrated towards the end)
+- **Deployment**: Kubernetes with GitHub Actions for CI/CD
 
-## Setup and Installation
+## Development Approach
+- **Testing Methodology**: Test Driven Development (TDD)
+- **Focus on Testing**: Use of fake services and end-to-end (E2E) testing with ephemeral resources.
 
-### Prerequisites
+## Timeline
+The project is expected to be completed within 2 to 3 weeks, focusing on delivering a basic styled site.
 
-- Node.js
-- Docker
-- Kubernetes cluster
-- GitHub account for authentication
+## Getting Started
+To get a local copy up and running, follow these steps:
 
-### Clone the Repository
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/yourusername/ju.mp.git
+   ```
 
-```bash
-git clone https://github.com/yourusername/jump.git
-cd jump
-```
+2. Navigate to the project directory:
+   ```bash
+   cd ju.mp
+   ```
 
-### Install Dependencies
+3. Install the necessary dependencies:
+   ```bash
+   npm install
+   ```
 
-```bash
-npm install
-```
+4. Set up the database (PostgreSQL) and configure the environment variables.
 
-### Environment Variables
-
-Create a `.env` file in the root directory and add the following environment variables:
-
-```env
-DATABASE_URL=postgres://username:password@localhost:5432/jump
-GITHUB_CLIENT_ID=your_github_client_id
-GITHUB_CLIENT_SECRET=your_github_client_secret
-JWT_SECRET=your_jwt_secret
-```
-
-### Run the Application
-
-```bash
-npm run start:dev
-```
-
-## API Documentation
-
-The API schema is defined using OpenAPI specifications. You can view the API documentation by running the application and navigating to `http://localhost:3000/api`.
-
-## Development
-
-### Initial Setup
-
-Set up the development environment, including NestJS, PostgreSQL, and Docker.
-
-### Define API Schema
-
-Use OpenAPI specifications to define the API schema for URL shortening, user authentication, analytics, and custom short URLs.
-
-### API Development with TDD
-
-Write tests for the core API functionalities based on the OpenAPI specs before implementing them.
-
-### CI/CD Pipeline
-
-Set up GitHub Actions for CI/CD to automate testing and deployment processes.
-
-## Testing
-
-We follow Test Driven Development (TDD) methodology. To run the tests, use the following command:
-
-```bash
-npm run test
-```
-
-## Deployment
-
-### Build Docker Image
-
-```bash
-docker build -t jump-url-shortener .
-```
-
-### Deploy to Kubernetes
-
-Ensure your Kubernetes cluster is set up and configured. Then deploy the application using the following command:
-
-```bash
-kubectl apply -f k8s/deployment.yaml
-```
-
-## Monitoring and Logging
-
-Integrate Grafana and Prometheus for monitoring and logging. This will be done towards the end of the project.
+5. Start the development server:
+   ```bash
+   npm start
+   ```
 
 ## Contributing
-
-We welcome contributions! Please follow these steps to contribute:
-
-1. Fork the repository.
-2. Create a new branch (`git checkout -b feature-branch`).
-3. Make your changes.
-4. Commit your changes (`git commit -m 'Add some feature'`).
-5. Push to the branch (`git push origin feature-branch`).
-6. Create a new Pull Request.
+Contributions are welcome! Please feel free to submit a pull request or open an issue for any suggestions or improvements.
 
 ## License
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+## Acknowledgments
+- Inspired by various URL shortening services.
+- Thanks to the open-source community for the tools and libraries used in this project.
