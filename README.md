@@ -32,34 +32,6 @@ This project is a web application that allows users to shorten long URLs into sh
 - **Testing Methodology**: Test Driven Development (TDD)
 - **Focus on Testing**: Use of fake services and end-to-end (E2E) testing with ephemeral resources.
 
-## Timeline
-The project is expected to be completed within 2 to 3 weeks, focusing on delivering a basic styled site.
-
-## Getting Started
-To get a local copy up and running, follow these steps:
-
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/yourusername/ju.mp.git
-   ```
-
-2. Navigate to the project directory:
-   ```bash
-   cd ju.mp
-   ```
-
-3. Install the necessary dependencies:
-   ```bash
-   npm install
-   ```
-
-4. Set up the database (PostgreSQL) and configure the environment variables.
-
-5. Start the development server:
-   ```bash
-   npm start
-   ```
-
 ## Contributing
 Contributions are welcome! Please feel free to submit a pull request or open an issue for any suggestions or improvements.
 
